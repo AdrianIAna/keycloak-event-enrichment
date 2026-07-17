@@ -29,10 +29,10 @@ Enrichment failures never block event persistence — if a GeoIP lookup fails or
 
 | Extension Version | Keycloak Version |
 |-------------------|------------------|
-| 1.1.x             | 26.5 - 26.7 (built against 26.7.0) |
+| 1.1.x             | 26.5 – 26.7 (built against 26.7.0) |
 | 1.0.x             | 26.x             |
 
-> This extension is compiled and tested against the Keycloak version shown above. It may work with other versions but is not guaranteed.
+> This extension is compiled and tested against the Keycloak versions shown above. It may work with other versions but is not guaranteed.
 
 ## Installation
 

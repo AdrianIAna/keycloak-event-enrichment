@@ -4,6 +4,8 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    # keycloak.version bumps surface Keycloak releases early; the CI matrix
+    # then proves (or disproves) compatibility
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
