@@ -28,7 +28,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <keycloak.version>26.7.0</keycloak.version>
-        <geoip2.version>4.4.0</geoip2.version>
+        <geoip2.version>5.2.0</geoip2.version>
         <junit.version>6.1.2</junit.version>
         <mockito.version>5.22.0</mockito.version>
     </properties>
