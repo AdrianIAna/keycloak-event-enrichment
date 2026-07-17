@@ -2,6 +2,7 @@
 
 A Keycloak SPI extension that enriches authentication events with GeoIP location data and parsed User-Agent information before persistence.
 
+![CI](https://github.com/AdrianIAna/keycloak-event-enrichment/actions/workflows/ci.yml/badge.svg)
 ![Keycloak](https://img.shields.io/badge/Keycloak-26.x-blue)
 ![License](https://img.shields.io/github/license/AdrianIAna/keycloak-event-enrichment)
 
@@ -10,6 +11,8 @@ A Keycloak SPI extension that enriches authentication events with GeoIP location
 Keycloak stores authentication events (login, logout, login error, etc.) with the client IP address, but does not store where the user is logging in from or what device they're using. Applications that need this data — for login history, security dashboards, or anomaly detection — must perform their own GeoIP lookups and User-Agent parsing, duplicating effort across every client.
 
 This extension moves that enrichment into Keycloak itself, so the data is stored once at the source and every consumer (Account Console, Admin API, custom applications) receives it automatically.
+
+For the read side, [keycloak-account-events](https://github.com/AdrianIAna/keycloak-account-events) exposes each user's own enriched login history through a self-service endpoint, using the user's own access token.
 
 ## How It Works
 
@@ -26,6 +29,7 @@ Enrichment failures never block event persistence — if a GeoIP lookup fails or
 
 | Extension Version | Keycloak Version |
 |-------------------|------------------|
+| 1.1.x             | 26.5 - 26.7 (built against 26.7.0) |
 | 1.0.x             | 26.x             |
 
 > This extension is compiled and tested against the Keycloak version shown above. It may work with other versions but is not guaranteed.
@@ -38,7 +42,7 @@ Enrichment failures never block event persistence — if a GeoIP lookup fails or
 4. Add configuration options to your `kc.sh start` command
 
 ```bash
-cp target/keycloak-event-enrichment-1.0.0.jar /opt/keycloak/providers/
+cp target/keycloak-event-enrichment-1.1.0.jar /opt/keycloak/providers/
 mkdir -p /opt/keycloak/conf/geoip
 cp GeoLite2-City.mmdb /opt/keycloak/conf/geoip/
 cp GeoLite2-ASN.mmdb /opt/keycloak/conf/geoip/  # optional
@@ -76,11 +80,13 @@ Requires Java 17+ and Maven 3.8+.
 mvn clean package
 ```
 
-Output: `target/keycloak-event-enrichment-1.0.0.jar` (shaded — includes MaxMind GeoIP2 library with package relocation)
+Output: `target/keycloak-event-enrichment-1.1.0.jar` (shaded — includes MaxMind GeoIP2 library with package relocation)
 
 ## Contributing
 
 Contributions are welcome. Please open an issue first to discuss proposed changes.
+For security problems, follow the [security policy](SECURITY.md) instead of opening
+a public issue.
 
 ## License
 

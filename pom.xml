@@ -6,7 +6,7 @@
 
     <groupId>net.sinenomine.keycloak</groupId>
     <artifactId>keycloak-event-enrichment</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>Keycloak Event Enrichment SPI</name>
@@ -27,7 +27,7 @@
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <keycloak.version>26.5.4</keycloak.version>
+        <keycloak.version>26.7.0</keycloak.version>
         <geoip2.version>4.4.0</geoip2.version>
         <junit.version>5.14.3</junit.version>
         <mockito.version>5.22.0</mockito.version>
