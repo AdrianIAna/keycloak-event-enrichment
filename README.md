@@ -88,6 +88,17 @@ Contributions are welcome. Please open an issue first to discuss proposed change
 For security problems, follow the [security policy](SECURITY.md) instead of opening
 a public issue.
 
+## Related Extensions
+
+Part of a small family of self-contained Keycloak extensions:
+
+- [keycloak-account-events](https://github.com/AdrianIAna/keycloak-account-events) —
+  the read side: a user's own login history (enriched by this extension) served
+  through a self-scoped endpoint, with the user's own token.
+- [keycloak-account-credentials](https://github.com/AdrianIAna/keycloak-account-credentials) —
+  the same self-scoped model applied to the credential store: a user's own
+  passkeys, OTP and recovery codes (never secrets), with their own token.
+
 ## License
 
 [Apache License 2.0](LICENSE)
