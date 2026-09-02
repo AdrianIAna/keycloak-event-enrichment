@@ -1,0 +1,19 @@
+Keycloak Event Enrichment SPI
+Copyright 2026 Sine Nomine Associates
+
+This product includes software developed at
+Sine Nomine Associates (https://www.sinenomine.net).
+
+This product bundles the following third-party software into its shaded
+provider JAR. Each is licensed under the Apache License, Version 2.0:
+
+  - MaxMind GeoIP2 Java API (com.maxmind.geoip2:geoip2)
+  - MaxMind DB Reader (com.maxmind.db:maxmind-db)
+
+  Copyright MaxMind, Inc.
+
+This product uses GeoLite2 data created by MaxMind, available from
+https://www.maxmind.com. The GeoLite2 databases themselves are NOT
+distributed with this software; the operator supplies them at runtime
+(see README.md), and their use is governed by MaxMind's own license
+terms rather than the Apache License.
