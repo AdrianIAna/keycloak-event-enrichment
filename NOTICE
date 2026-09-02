@@ -4,6 +4,8 @@ Copyright 2026 Sine Nomine Associates
 This product includes software developed at
 Sine Nomine Associates (https://www.sinenomine.net).
 
+Originally written by Adrian Ana.
+
 This product bundles the following third-party software into its shaded
 provider JAR. Each is licensed under the Apache License, Version 2.0:
 
