@@ -144,6 +144,27 @@
     </dependencies>
 
     <build>
+        <resources>
+            <!--
+              The default source directory MUST stay declared: naming <resources>
+              at all overrides it, and dropping it would silently stop packaging
+              META-INF/services, leaving an inert provider JAR that still builds.
+              PackagedJarIT pins both halves.
+            -->
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <!-- Apache-2.0 4(d): ship LICENSE and NOTICE inside the artifact,
+                 not just at the repo root, so they reach whoever takes the jar. -->
+            <resource>
+                <directory>${project.basedir}</directory>
+                <targetPath>META-INF</targetPath>
+                <includes>
+                    <include>LICENSE</include>
+                    <include>NOTICE</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -154,6 +175,24 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.6</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.6</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <packaged.jar>${project.build.directory}/${project.build.finalName}.jar</packaged.jar>
+                    </systemPropertyVariables>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <!-- Shade plugin: bundle geoip2 + maxmind-db into the provider JAR -->
             <plugin>
@@ -178,15 +217,6 @@
                                     <shadedPattern>net.sinenomine.keycloak.shaded.com.maxmind</shadedPattern>
                                 </relocation>
                             </relocations>
-                            <!--
-                              Apache-2.0 section 4(d): attribution notices carried by
-                              the bundled MaxMind artifacts must survive into this jar.
-                              Without these the shade step silently drops them.
-                            -->
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer"/>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"/>
-                            </transformers>
                         </configuration>
                     </execution>
                 </executions>
